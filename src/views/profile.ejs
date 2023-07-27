@@ -1,0 +1,63 @@
+<%- include('./shared/header')%>
+<link rel="stylesheet" href="/css/signup.css">
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text-white m-5 text-center">
+            <a href="/api/v1/auth/logout" class="btn btn-outline-danger">logout</a>
+        </div>
+        <div class="py-5">
+            <h1 class="text-white text-center">Welcome to Your Profile</h1>
+        </div>
+    <div class=" form w-75 m-auto text-center">
+        <% if (errMessage?.length){ %>
+            <div class="form-group alert alert-danger p-3">
+                    <%= errMessage %>
+            </div>
+            <% } %>
+        <form action="/api/v1/user/profilePic" method="POST" enctype="multipart/form-data">
+            <input class="form-control" type="file" name="image">
+            <div class="form-group my-3">
+                <button class="btn btn-outline-info" type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
+    <div class="form-group my-3 m-auto text-center">
+        <a class="btn btn-outline-warning" href="/api/v1/user/getUpdateProfile">update your Account </a>
+    </div>
+    <div class="form-group my-3 m-auto text-center">
+        <a class="btn btn-outline-secondary" href="/api/v1/user/deleteAccount">Delete Account </a>
+    </div>
+    <div class="row w-100 text-center my-3">
+        <% for(let i = 0; i < users.length; i++){ %>
+            <div class="col-md-12 p-2">
+                <div class="card text-center" style="width: 18rem;">
+                    <img src="<%= users[i].profilePic%>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h2 class="card-title"><%= users[i].name %></h2>
+                      <h3 class="card-title"><%= users[i].email %></h3>
+                      <h6 class="card-title"><%= users[i].phone %></h6>
+                    </div>
+                </div>
+                    <div class="row my-5">
+                        <% for(let x = 0; x < users[i].notes.length; x++){ %>
+                            <div class="col-md-4 p-2">
+                                <div class="card text-center" style="width: 18rem;">
+                                    <img src="<%= users[i].notes[x].picture%>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title"><%= users[i].notes[x].noteBody %></h5>
+                                    </div>
+                                  </div>
+                            </div>
+                        <% } %>
+
+                  </div>
+            </div>
+        <% } %>
+        </div>
+</div>
+<%- include('./shared/script')%>
+<script src="/js/signup.js"></script>
+<script src="../../app.js"></script>
+<%- include('./shared/footer')%>

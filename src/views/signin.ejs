@@ -1,0 +1,43 @@
+<%- include('./shared/header')%>
+<link rel="stylesheet" href="/css/signup.css">
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+<div class="py-2">
+    <h1 class="text-white text-center">Login</h1>
+</div>    
+<div class="form w-75 m-auto p-5 pt-0">
+    <form action="signin" method="POST">
+        <% if (errMessage?.length){ %>
+        <div class="form-group alert alert-danger p-3">
+                <%= errMessage %>
+        </div>
+        <% } %>
+        <div class="form-group p-3">
+            <input type="email" placeholder="email" name="email" class="form-control" value="<%= oldInput?.email%>">
+        </div>
+        <% if (validationErr?.includes('email')){%>
+            <div class="form-group alert alert-danger p-3">
+                <p>In-valid email or not validate</p>
+            </div>  
+        <% } %>
+        <div class="form-group p-3">
+            <input type="password" placeholder="password" name="password" class="form-control" value="<%= oldInput?.password%>">
+        </div>
+        <% if (validationErr?.includes('password')){%>
+            <div class="form-group alert alert-danger p-3">
+                <p>In-valid password or not validate</p>
+            </div>  
+        <% } %>
+        <div class="form-group p-3">
+            <button type="submit" class="btn btn-outline-info text-white w-100">Login</button>
+            <p class="text-white text-center my-3"> Are you not have account ? <a class="btn btn-outline-info" href="/api/v1/auth/signUp">Register Now</a> </p>
+        </div>
+    </form>
+</div>
+    </div>
+<%- include('./shared/script')%>
+<script src="/js/signup.js"></script>
+<script src="../../app.js"></script>
+<%- include('./shared/footer')%>

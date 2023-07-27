@@ -1,0 +1,67 @@
+<%- include('./shared/header')%>
+<link rel="stylesheet" href="/css/signup.css">
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+<div class="py-2">
+    <h1 class="text-white text-center">Welcome to sign up</h1>
+</div>    
+<div class="form w-75 m-auto p-5 pt-0">
+    <form action="signup" method="POST">
+        <% if (errMessage?.length){ %>
+        <div class="form-group alert alert-danger p-3">
+                <%= errMessage %>
+        </div>
+        <% } %>
+        <div class="form-group p-3">
+            <input type="text" placeholder="userName" name="name" class="form-control" value="<%= oldInput?.name%>">
+        </div>
+        <% if (validationErr?.includes('name')){%>
+            <div class="form-group alert alert-danger p-3">
+                <p>In-valid name or not validate</p>
+            </div>  
+        <% } %>
+        <div class="form-group p-3">
+            <input type="email" placeholder="email" name="email" class="form-control" value="<%= oldInput?.email%>">
+        </div>
+        <% if (validationErr?.includes('email')){%>
+            <div class="form-group alert alert-danger p-3">
+                <p>In-valid email or not validate</p>
+            </div>  
+        <% } %>
+        <div class="form-group p-3">
+            <input type="password" placeholder="password" name="password" class="form-control" value="<%= oldInput?.password%>">
+        </div>
+        <% if (validationErr?.includes('password')){%>
+            <div class="form-group alert alert-danger p-3">
+                <p>In-valid password or not validate</p>
+            </div>  
+        <% } %>
+        <div class="form-group p-3">
+            <input type="password" placeholder="confirmation password" name="cPassword" class="form-control" value="<%= oldInput?.cPassword%>">
+        </div>
+        <% if (validationErr?.includes('cPassword')){%>
+            <div class="form-group alert alert-danger p-3">
+                <p>In-valid confirmation password or not validate</p>
+            </div>  
+        <% } %>
+        <div class="form-group p-3">
+            <input type="text" placeholder="phone" name="phone" class="form-control" value="<%= oldInput?.phone%>">
+        </div>
+        <% if (validationErr?.includes('phone')){%>
+            <div class="form-group alert alert-danger p-3">
+                <p>not validate</p>
+            </div>  
+        <% } %>
+        <div class="form-group p-3">
+            <button type="submit" class="btn btn-outline-info text-white w-100">signup</button>
+            <p class="text-white text-center my-3"> Already you have account ? <a class="btn btn-outline-info" href="/api/v1/auth/signin">login</a> </p>
+        </div>
+    </form>
+</div>
+    </div>
+<%- include('./shared/script')%>
+<script src="/js/signup.js"></script>
+<script src="../../app.js"></script>
+<%- include('./shared/footer')%>

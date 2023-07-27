@@ -1,0 +1,46 @@
+<%- include('./shared/header')%>
+<link rel="stylesheet" href="/css/signup.css">
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+<div class="py-2">
+    <h1 class="text-white text-center">Welcome to notes</h1>
+</div>    
+<div class="form w-75 m-auto p-5 pt-0">
+    <form action="/api/v1/note" method="POST" enctype="multipart/form-data">
+        <% if (errMessage?.length){ %>
+        <div class="form-group alert alert-danger p-3">
+                <%= errMessage %>
+        </div>
+        <% } %>
+        <div class="form-group p-3">
+            <input type="text" placeholder="title" name="noteBody" class="form-control" value="<%= oldInput?.noteBody%>">
+        </div>
+        <div class="form-group p-3">
+            <input type="file"name="image" class="form-control">
+        </div>
+        <div class="form-group p-3">
+            <button type="submit" class="btn btn-outline-info text-white w-100">Add note</button>
+        </div>
+    </form>
+</div>
+<div class="row my-3">
+<% for(let i = 0; i < notes.length; i++){ %>
+    <div class="col-md-4 p-2">
+        <div class="card text-center" style="width: 18rem;">
+            <img src="<%= notes[i].picture%>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= notes[i].noteBody %></h5>
+              <a href="/api/v1/note/<%= notes[i]._id%>/getNoteToUpdate" class="btn btn-outline-info">Update</a>
+              <a href="/api/v1/note/<%= notes[i]._id%>/deleteNote" class="btn btn-outline-danger">Delete</a>
+            </div>
+          </div>
+    </div>
+<% } %>
+</div>
+    </div>
+<%- include('./shared/script')%>
+<script src="/js/signup.js"></script>
+<script src="../../app.js"></script>
+<%- include('./shared/footer')%>

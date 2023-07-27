@@ -1,0 +1,38 @@
+<%- include('./shared/header')%>
+<link rel="stylesheet" href="/css/signup.css">
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+<div class="py-2">
+    <h1 class="text-white text-center">Update Profile</h1>
+</div>    
+<div class="form w-75 m-auto p-5 pt-0">
+    <form action="/api/v1/user/updateProfile" method="POST">
+        <% if (errMessage?.length){ %>
+        <div class="form-group alert alert-danger p-3">
+                <%= errMessage %>
+        </div>
+        <% } %>
+        <div class="form-group p-3">
+            <input type="text" placeholder="userName" name="name" class="form-control" value="<%= user?.name%>">
+        </div>
+
+        <div class="form-group p-3">
+            <input type="password" placeholder="password" name="password" class="form-control" value="">
+        </div>
+
+        <div class="form-group p-3">
+            <input type="text" placeholder="phone" name="phone" class="form-control" value="<%= user?.phone%>">
+        </div>
+
+        <div class="form-group p-3">
+            <button type="submit" class="btn btn-outline-info text-white w-100">updateProfile</button>
+        </div>
+    </form>
+</div>
+    </div>
+<%- include('./shared/script')%>
+<script src="/js/signup.js"></script>
+<script src="../../app.js"></script>
+<%- include('./shared/footer')%>

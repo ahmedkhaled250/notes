@@ -1,0 +1,32 @@
+<%- include('./shared/header')%>
+<link rel="stylesheet" href="/css/signup.css">
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+<div class="py-2">
+    <h1 class="text-white text-center">Welcome to update profile</h1>
+</div>    
+<div class="form w-75 m-auto p-5 pt-0">
+    <form action="/api/v1/note/<%= note._id%>/updateNote" method="POST" enctype="multipart/form-data">
+        <% if (errMessage?.length){ %>
+        <div class="form-group alert alert-danger p-3">
+                <%= errMessage %>
+        </div>
+        <% } %>
+        <div class="form-group p-3">
+            <input type="text" placeholder="title" name="noteBody" class="form-control" value="<%= note?.noteBody%>">
+        </div>
+        <div class="form-group p-3">
+            <input type="file"name="image" class="form-control">
+        </div>
+        <div class="form-group p-3">
+            <button type="submit" class="btn btn-outline-info text-white w-100">Update note</button>
+        </div>
+    </form>
+</div>
+    </div>
+<%- include('./shared/script')%>
+<script src="/js/signup.js"></script>
+<script src="../../app.js"></script>
+<%- include('./shared/footer')%>
